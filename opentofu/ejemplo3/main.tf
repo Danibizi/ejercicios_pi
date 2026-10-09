@@ -29,7 +29,7 @@ resource "libvirt_domain" "ej3-server1" {
   memory = 1024
   vcpu   = 2
 
-  # Red 1: NAT con DHCP (acceso exterior)
+  # Red 1: NAT con DHCP (192.168.100.0/24)
   network_interface {
     network_id     = libvirt_network.ej3-nat-dhcp.id
     wait_for_lease = true
@@ -41,16 +41,28 @@ resource "libvirt_domain" "ej3-server1" {
     wait_for_lease = true
   }
 
-  disk { volume_id = libvirt_volume.ej3-server1-disk.id }
-  disk { volume_id = libvirt_volume.ej3-server1-disk-extra1.id }
+  # Red 3: NAT con DHCP (192.168.110.0/24)
+  network_interface {
+    network_id     = libvirt_network.ej3-nat-dhcp2.id
+    wait_for_lease = true
+  }
+
+  # Discos
+  disk {
+    volume_id = libvirt_volume.ej3-server1-disk.id
+  }
+
+  disk {
+    volume_id = libvirt_volume.ej3-server1-disk-extra1.id
+  }
+
+  # Configuración cloud-init
   cloudinit = libvirt_cloudinit_disk.ej3-server1-cloudinit.id
 
-  # Consola serie: las imágenes cloud la esperan (sin ella, algunas, como
-  # Ubuntu, no terminan de arrancar) y permite entrar con "virsh console"
-  # aunque falle la red
+  # Consola serie
   console {
     type        = "pty"
     target_port = "0"
     target_type = "serial"
   }
-}
+ }

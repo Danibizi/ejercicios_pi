@@ -8,7 +8,7 @@ users:
     groups: users, admin
     shell: /bin/bash
     ssh_authorized_keys:
-      - ssh-ed25519 AAAA... sustituye esta línea por tu clave pública
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOMRaSIKDJFcbuX/mV5ZT1llXFynQiEKoySuKBlQin7 dani@debiancad12
 
 chpasswd:
   expire: False

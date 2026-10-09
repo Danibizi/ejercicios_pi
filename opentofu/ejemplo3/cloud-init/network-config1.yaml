@@ -5,3 +5,5 @@ network:
       dhcp4: true  # red NAT con DHCP
     ens4:
       dhcp4: true  # red default con DHCP
+    ens5:
+      dhcp4: true  # red nueva dhcp

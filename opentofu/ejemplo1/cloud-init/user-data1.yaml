@@ -3,18 +3,18 @@ hostname: ej1-server1
 
 timezone: Europe/Madrid
 users:
-  - name: debian
+  - name: ubuntu
     sudo: ALL=(ALL) NOPASSWD:ALL
     groups: users, admin
     shell: /bin/bash
     ssh_authorized_keys:
-      - ssh-ed25519 AAAA... sustituye esta línea por tu clave pública
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICOMRaSIKDJFcbuX/mV5ZT1llXFynQiEKoySuKBlQin7 dani@debiancad12
 
 
 chpasswd:
   expire: False
   users:
-    - name: debian
+    - name: ubuntu
       password: asdasd
       type: text
 
